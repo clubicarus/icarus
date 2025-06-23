@@ -1,0 +1,82 @@
+import { VerticalBox, HorizontalBox, TabWidget, ScrollView, Button, Palette } from "std-widgets.slint";
+import { ModDisplay } from "mod-display.slint";
+
+export component AppWindow inherits Window {
+    callback slint_save();
+    callback open_github();
+    callback slint_toggle(id: string);
+    in-out property <[{
+        name: string,
+        description: string,
+        image: image,
+        enabled: bool,
+        id: string
+    }]> mods: [{}];
+    width: 400px;
+    height: 400px;
+    title: "icarus";
+    icon: @image-url("images/icon.png");
+    /* Icon license: Font Awesome Free 6.7.2 by @fontawesome
+    https://fontawesome.com License
+    https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. */
+    TabWidget {
+        Tab {
+            title: "Mods";
+            if mods.length > 0 : ScrollView {
+                VerticalBox {
+                    for mod in mods: ModDisplay {
+                        name: mod.name;
+                        description: mod.description;
+                        image: mod.image;
+                        enabled: mod.enabled;
+                        id: mod.id;
+                        slint_toggle => { root.slint_toggle(mod.id); }
+                    }
+                    VerticalLayout {
+                        Button {
+                             text: "Save";
+                             clicked => { root.slint_save(); }
+                        }
+                        alignment: end;
+                    }
+                }
+            }
+            if mods.length == 0 : Text { text: "No mods found."; }
+        }
+        Tab {
+            title: "About";
+            VerticalBox {
+                alignment: start;
+                padding: 9px;
+                Text {
+                    text:
+                        "Icarus 1.3.0\n" +
+                        "A cache-based modloader for Roblox"
+                    ;
+                    wrap: char-wrap;
+                    font-size: 12pt;
+                }
+            }
+            VerticalBox {
+                padding: 9px;
+                alignment: end;
+                HorizontalBox {
+                    padding: 0px;
+                    alignment: start;
+                    TouchArea {
+                        mouse-cursor: pointer;
+                        width: img.width;
+                        height: img.height;
+                        clicked => { root.open_github(); }
+                        img := Image {
+                            source: Palette.color-scheme == ColorScheme.dark
+                            ? @image-url("images/github-white.svg")
+                            : @image-url("images/github-black.svg");
+                            height: 32px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

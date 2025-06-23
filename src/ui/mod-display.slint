@@ -1,0 +1,39 @@
+import { VerticalBox, HorizontalBox, Palette, CheckBox } from "std-widgets.slint";
+
+component StyledText inherits Text {
+    font-size: 12pt;
+    wrap: char-wrap;
+}
+export component ModDisplay inherits Rectangle {
+    callback slint_toggle(id: string);
+    in property <string> name: "";
+    in property <string> description: "";
+    in property <image> image;
+    in-out property <bool> enabled;
+    in property <string> id: "";
+    HorizontalBox {
+        Image {
+            source: image;
+            height: 70px;
+            width: 70px;
+            vertical-alignment: center;
+        }
+        VerticalBox {
+            spacing: 5px;
+            StyledText {
+                text: name;
+                font-weight: 700;
+            }
+            StyledText { text: description; }
+        }
+        CheckBox {
+            checked: enabled;
+            toggled => { root.slint_toggle(id); }
+        }
+    }
+        clip: true;
+        border-radius: 3px;
+        background: Palette.control-background;
+        border-width : 1px;
+        border-color: Palette.border;
+}
