@@ -197,3 +197,4 @@ pyrightconfig.json
 ### Personal ###
 src/mods/
 dev.py
+src/modules/

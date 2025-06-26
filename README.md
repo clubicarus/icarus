@@ -1,2 +1,2 @@
 # icarus
-a modloader for roblox
+a cache-based modloader for roblox
