@@ -12,7 +12,7 @@
 
 a modloader for roblox based on fleasion, written with python and slint
 made by kit <3 special thanks to the fleasion team
-1.3.0, licensed under the mpl-2.0 license
+1.3.1, licensed under the mpl-2.0 license
 stream club icarus by artms
 (no kliko i will not be using customtkinter)
 """
@@ -71,12 +71,12 @@ class back:
 
 back.corrupt_rbxstorage()
 
-try:
-    with open(f"{os.getcwd()}/config/enabled.json", "r") as ef: ej = json.load(ef)
-except:
-    ej = []
+if not os.path.exists(f"{os.getcwd()}/config/enabled.json"):
+    logging.warning("config/enabled.json not found.")
+    os.makedirs(f"{os.getcwd()}/config", exist_ok=True)
     open(f"{os.getcwd()}/config/enabled.json", "a").close()
-    logging.warning("enabled.json not found, creating a new one with an empty list.")
+    ej = []
+
 window = slint.load_file("ui/app-window.slint", style="fluent")
 
 # loading the mods
@@ -98,14 +98,16 @@ else:
         with open(f"{here}/meta.json", "r") as mf: meta = json.load(mf)
         try: enabled = meta["id"] in ej
         except: enabled = False
-        mods.append({
-            "name": meta["name"],
-            "description": meta["description"],
-            "image": image,
-            "enabled": enabled,
-            "id": meta["id"]
-        })
-        names[meta["id"]] = here
+        try:
+            mods.append({
+                "name": meta["name"],
+                "description": meta["description"],
+                "image": image,
+                "enabled": enabled,
+                "id": meta["id"]
+            })
+            names[meta["id"]] = here
+        except: continue
 
 # oki the rest ;-;
 class App(window.AppWindow):
