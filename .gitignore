@@ -195,6 +195,12 @@ pyrightconfig.json
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,python
 
 ### Personal ###
+# For the script itself
 src/mods/
 dev.py
 src/modules/
+
+# For nuitka
+main.dist/
+main.build/
+nuitka-crash-report.xml
