@@ -6,7 +6,7 @@
 #                                                    
 # a modloader for roblox based on fleasion, written with python and slint
 # made by kit <3 special thanks to the fleasion team
-# 1.4.1, licensed under the mpl-2.0 license
+# 1.4.2, licensed under the mpl-2.0 license
 # stream club icarus by artms
 # (no kliko i will not be using customtkinter)
 
@@ -47,7 +47,7 @@ class back:
         if id is not None:
             first = requests.post(f"https://assetdelivery.roblox.com/v1/assets/batch", verify=False, json=[{"assetId": id, "requestId": "0"}])
             if first.status_code != 200:
-                log_msgbox.warning("Failed to fetch asset data for the asset ID {id}. Please check your internet connection or the asset ID.")
+                log_msgbox.warning(f"Failed to fetch asset data for the asset ID {id}. Please check your internet connection or the asset ID.")
                 return
             location = urlparse(first.json()[0]["location"]).path.split("/")[-1]
         here = f"{os.environ["LOCALAPPDATA"]}/Temp/Roblox/http"
@@ -63,7 +63,7 @@ class back:
                         logging.info(f"Found cached file for the asset at {here}/{file}")
                         files.append(file)
                         if request != "array": break
-            except: log_msgbox.warning("File for {location} inaccessible. Check if the asset was loaded.")
+            except: log_msgbox.warning(f"File for {location} inaccessible. Check if the asset was loaded.")
         return [location, files]
     @staticmethod
     def replace(file: str, cached: str):
@@ -163,5 +163,5 @@ class App(window.AppWindow):
 
 app = App()
 app.mods = slint.ListModel(mods)
-app.version = "1.4.1"
+app.version = "1.4.2"
 app.run()
