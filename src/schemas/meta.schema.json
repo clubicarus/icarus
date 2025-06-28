@@ -1,0 +1,21 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://clubicarus.github.io/schemas/icarus/meta.schema.json",
+    "title": "Icarus Metadata",
+    "type": "object",
+    "propeties": {
+        "name": {
+            "type": "string",
+            "description": "the mod's name"
+        },
+        "description": {
+            "type": "string",
+            "description": "a short description of the mod"
+        },
+        "id": {
+            "type": "string",
+            "description": "the mod's id"
+        }
+    },
+    "required": ["name", "description", "id"]
+}

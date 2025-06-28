@@ -1,0 +1,24 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://clubicarus.github.io/schemas/icarus/mapping.schema.json",
+    "title": "Icarus Mapping",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string",
+                "description": "file name inside of the folder files"
+            },
+            "cachedHashes": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "description": "filename in the http/cache folder"
+                },
+                "description": "list of filenames in the http folder"
+            }
+        },
+        "required": ["name", "cachedHashes"]
+    }
+}

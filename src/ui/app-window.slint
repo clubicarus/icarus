@@ -12,9 +12,10 @@ export component AppWindow inherits Window {
         enabled: bool,
         id: string
     }]> mods: [{}];
+    in property <string> version;
     width: 400px;
     height: 400px;
-    title: "icarus";
+    title: "icarusloader";
     icon: @image-url("images/icon.png");
     /* Icon license: Font Awesome Free 6.7.2 by @fontawesome
     https://fontawesome.com License
@@ -50,7 +51,7 @@ export component AppWindow inherits Window {
                 padding: 9px;
                 Text {
                     text:
-                        "Icarus 1.3.1\n" +
+                        "IcarusLoader " + version + "\n" +
                         "A cache-based modloader for Roblox"
                     ;
                     wrap: char-wrap;
