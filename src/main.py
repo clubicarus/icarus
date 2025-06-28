@@ -6,7 +6,7 @@
 #                                                    
 # a modloader for roblox based on fleasion, written with python and slint
 # made by kit <3 special thanks to the fleasion team
-# 1.4.0, licensed under the mpl-2.0 license
+# 1.4.1, licensed under the mpl-2.0 license
 # stream club icarus by artms
 # (no kliko i will not be using customtkinter)
 
@@ -74,19 +74,6 @@ class back:
     def delete(cached: str = None):
         if os.path.exists(cached): os.remove(cached)
         logging.info("Deleted cached file")
-    @staticmethod
-    def corrupt_rbxstorage():
-        with open(f"{os.environ["LOCALAPPDATA"]}/Roblox/rbx-storage.db", "r+b") as f:
-            data = f.read()
-            if data != b"SQLite format 3\x00":
-                f.truncate(0)
-                f.seek(0)
-                f.write(b"SQLite format 3\x00")
-                logging.info("Corrupted rbx-storage.db")
-        with open(f"{os.environ["LOCALAPPDATA"]}/Roblox/rbx-storage-clone.db", "wb") as f: f.write(data)
-        open(f"{os.environ["LOCALAPPDATA"]}/Roblox/rbx-storage.db", "wb").close()
-
-back.corrupt_rbxstorage()
 
 if not os.path.exists(f"{os.getcwd()}/config/enabled.json"):
     log_msgbox.warning("config/enabled.json not found, creating it.")
@@ -176,5 +163,5 @@ class App(window.AppWindow):
 
 app = App()
 app.mods = slint.ListModel(mods)
-app.version = "1.4.0"
+app.version = "1.4.1"
 app.run()
