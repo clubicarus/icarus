@@ -200,9 +200,9 @@ dev/
 
 # For the script itself
 src/mods/
-dev.py
 src/modules/
 src/config/
+dev.py
 
 # For nuitka
 main.dist/
