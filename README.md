@@ -13,6 +13,8 @@ requirements:
 
 install the latest version from <https://github.com/clubicarus/icarus/archive/refs/heads/main.zip> and run `main.py` from the folder `src`
 
+make sure to set the flag `FFlagHttpUseRbxStorage10` to `False` for it to work properly.
+
 to install mods, add them as a folder to `src/mods`. make sure the mod folder is decompressed and has a `meta.json` and a `mappings.json` file and a `files` folder
 
 ## discord
