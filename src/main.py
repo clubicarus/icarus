@@ -6,7 +6,7 @@
 #                                                    
 # a modloader for roblox based on fleasion, written with python and slint
 # made by kit <3 special thanks to the fleasion team
-# 1.4.2, licensed under the mpl-2.0 license
+# 1.4.3, licensed under the mpl-2.0 license
 # stream club icarus by artms
 # (no kliko i will not be using customtkinter)
 
@@ -86,7 +86,7 @@ else:
         except json.JSONDecodeError:
             log_msgbox.warning("enabled.json is corrupted, creating it again.")
             ej = []
-            with open(f"{os.getcwd()}/config/enabled.json", "w") as ef: ef.dump("[]")
+            with open(f"{os.getcwd()}/config/enabled.json", "w") as ef: ef.write("[]")
 
 window = slint.load_file("ui/app-window.slint", style="fluent")
 
@@ -163,5 +163,5 @@ class App(window.AppWindow):
 
 app = App()
 app.mods = slint.ListModel(mods)
-app.version = "1.4.2"
+app.version = "1.4.3"
 app.run()
